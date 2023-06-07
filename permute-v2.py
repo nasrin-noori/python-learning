@@ -11,7 +11,7 @@ def permute(data,i,length):
             data[i],data[j]=data[j],data[i]
     #print(result)        
     return result
-              
+# this function is o(n!) which n is number of shorter string character              
 #permute(list(s), 0, len(s))
 def asses_logic(export, search_string):
     indicator=0
@@ -23,3 +23,4 @@ def asses_logic(export, search_string):
         print('NO permutation found')
 result = permute(list(s), 0, len(s))
 asses_logic(result,t)
+#this function is o(n!*length of longer string)
