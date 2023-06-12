@@ -31,6 +31,7 @@
     # TODO: optimize the algorithm to reach o(nm) where n is the length of the short and the m is the length of the long string
     # aaab vs abaa ? {a: 3, b: 1}
     # find abab in aabbbaaaba
+####### first attepmt : the order of code is o(n^2*m)
 def permute(short, long):
     short_list = list(short)
     long_list = list(long)
@@ -42,6 +43,25 @@ def permute(short, long):
                      num_right += 1
         if num_right == len(short_list):
             yield long_list[i : i + len(short_list)]  # Corrected indexing
+
+
+if __name__ == '__main__':
+    t = input('Enter longer string: ')
+    s = input('Enter shorter string: ')
+    result = permute(s, t)
+    for num in result:
+        print(num)
+####### second attempt : the order is o(n*m)
+from collections import Counter
+
+def permute(short, long):
+    short_counter = Counter(short)
+    long_list = list(long)
+    short_length = len(short)
+    for i in range(0, len(long) - short_length + 1):
+        sub_list = long_list[i:i + short_length]
+        if short_counter == Counter(sub_list):
+            yield ''.join(sub_list)
 
 
 if __name__ == '__main__':
